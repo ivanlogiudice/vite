@@ -4,12 +4,11 @@ import { Link, Route, Switch } from 'react-router-dom'
 // https://vitejs.dev/guide/features.html#glob-import
 const pages = import.meta.globEager('./pages/*.jsx')
 
-const routes = Object.keys(pages).map((path) => {
-  const name = path.match(/\.\/pages\/(.*)\.jsx$/)[1]
+const routes = Object.keys(pages).map((name) => {
   return {
     name,
     path: name === 'Home' ? '/' : `/${name.toLowerCase()}`,
-    component: pages[path].default
+    component: pages[name].default
   }
 })
 

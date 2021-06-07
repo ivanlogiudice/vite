@@ -221,17 +221,17 @@ The above will be transformed into the following:
 ```js
 // code produced by vite
 const modules = {
-  './dir/foo.js': () => import('./dir/foo.js'),
-  './dir/bar.js': () => import('./dir/bar.js')
+  'foo': () => import('./dir/foo.js'),
+  'bar': () => import('./dir/bar.js')
 }
 ```
 
 You can then iterate over the keys of the `modules` object to access the corresponding modules:
 
 ```js
-for (const path in modules) {
-  modules[path]().then((mod) => {
-    console.log(path, mod)
+for (const name in modules) {
+  modules[name]().then((mod) => {
+    console.log(name, mod)
   })
 }
 ```
@@ -249,8 +249,8 @@ The above will be transformed into the following:
 import * as __glob__0_0 from './dir/foo.js'
 import * as __glob__0_1 from './dir/bar.js'
 const modules = {
-  './dir/foo.js': __glob__0_0,
-  './dir/bar.js': __glob__0_1
+  'foo': __glob__0_0,
+  'bar': __glob__0_1
 }
 ```
 

@@ -78,11 +78,12 @@ export async function transformImportGlob(
     }
     imports.push(importee)
     const identifier = `__glob_${importIndex}_${i}`
+    const filename = path.parse(file).name
     if (isEager) {
       importsString += `import * as ${identifier} from ${JSON.stringify(
         importee
       )};`
-      entries += ` ${JSON.stringify(file)}: ${identifier},`
+      entries += ` ${JSON.stringify(filename)}: ${identifier},`
     } else {
       let imp = `import(${JSON.stringify(importee)})`
       if (!normalizeUrl && !ssr) {
@@ -91,7 +92,7 @@ export async function transformImportGlob(
           `? ${preloadMethod}(()=>${imp},"${preloadMarker}")` +
           `: ${imp})`
       }
-      entries += ` ${JSON.stringify(file)}: () => ${imp},`
+      entries += ` ${JSON.stringify(filename)}: () => ${imp},`
     }
   }
 

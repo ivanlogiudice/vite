@@ -4,9 +4,9 @@
 <script type="module">
   const modules = import.meta.glob('/dir/**')
 
-  for (const path in modules) {
-    modules[path]().then((mod) => {
-      console.log(path, mod)
+  for (const name in modules) {
+    modules[name]().then((mod) => {
+      console.log(name, mod)
     })
   }
 
